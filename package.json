@@ -4,9 +4,9 @@
   "description": "",
   "main": "srcServer.js",
   "scripts": {
-    "prestart": "node buildScripts/startMessage.js",
+    "prestart": "babel-node buildScripts/startMessage.js",
     "start": "npm-run-all --parallel security-check open:src",
-    "open:src": "node buildScripts/srcServer.js",
+    "open:src": "babel-node buildScripts/srcServer.js",
     "security-check": "nsp check",
     "ngrok": "ngrok http 3000",
     "share": "npm-run-all --parallel open:src ngrok",
@@ -15,6 +15,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
     "chalk": "^2.0.1",
     "express": "^4.15.3",
     "ngrok": "^2.2.15",
