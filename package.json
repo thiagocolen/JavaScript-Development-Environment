@@ -22,6 +22,8 @@
     "chalk": "^2.0.1",
     "css-loader": "^0.28.4",
     "express": "^4.15.3",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.5",
     "ngrok": "^2.2.1np5",
     "npm-run-all": "^4.0.2",
     "nsp": "^2.6.3",
