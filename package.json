@@ -5,7 +5,7 @@
   "main": "srcServer.js",
   "scripts": {
     "prestart": "babel-node buildScripts/startMessage.js",
-    "start": "npm-run-all --parallel security-check open:src lint:watch",
+    "start": "npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
     "open:src": "babel-node buildScripts/srcServer.js",
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
@@ -13,9 +13,12 @@
     "ngrok": "ngrok http 3000",
     "share": "npm-run-all --parallel open:src ngrok",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
   },
-  "author": "",
+  "author": "Thiago Colen",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -31,6 +34,8 @@
     "express": "^4.15.3",
     "fs": "0.0.1-security",
     "jsdom": "^11.1.0",
+    "json-schema-faker": "^0.5.0-rc10",
+    "json-server": "^0.11.2",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "mocha": "^3.4.2",
