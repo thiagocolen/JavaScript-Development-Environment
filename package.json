@@ -16,7 +16,11 @@
     "test:watch": "npm run test -- --watch",
     "generate-mock-data": "babel-node buildScripts/generateMockData",
     "prestart-mockapi": "npm run generate-mock-data",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001"
+    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
+    "clean-dist": "rimraf ./dist && mkdir dist",
+    "prebuild": "npm-run-all clean-dist test lint",
+    "build": "babel-node buildScripts/build.js",
+    "postbuild": "babel-node buildScripts/distServer.js"
   },
   "author": "Thiago Colen",
   "license": "ISC",
@@ -32,7 +36,9 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-watch": "^3.1.2",
     "express": "^4.15.3",
+    "extract-text-webpack-plugin": "^3.0.0",
     "fs": "0.0.1-security",
+    "html-webpack-plugin": "^2.29.0",
     "jsdom": "^11.1.0",
     "json-schema-faker": "^0.5.0-rc10",
     "json-server": "^0.11.2",
@@ -47,6 +53,7 @@
     "style-loader": "^0.18.2",
     "webpack": "^3.3.0",
     "webpack-dev-middleware": "^1.11.0",
+    "webpack-md5-hash": "0.0.5",
     "whatwg-fetch": "^2.0.3"
   }
 }
